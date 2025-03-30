@@ -18,19 +18,21 @@
             color: #d32f2f;
             overflow-x: hidden;
             transition: background 1s ease;
-            background-size: auto; /* Cambiado para mosaico */
-            background-repeat: repeat; /* Repetir la imagen */
+            background-size: auto;
+            background-repeat: repeat;
         }
         
         /* Carta cerrada (imagen) */
         .carta-cerrada {
-            width: 250px;
+            width: 200px;
+            max-width: 80%;
             cursor: pointer;
             transition: all 0.5s;
             position: relative;
             z-index: 10;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
+            margin: 0 auto;
         }
         
         .carta-cerrada:hover {
@@ -39,54 +41,59 @@
         
         /* Contenedor principal (oculto inicialmente) */
         .container {
-            background-color: rgba(255, 255, 255, 0.85); /* Más opacidad para legibilidad */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            padding: 20px;
             max-width: 500px;
             width: 90%;
-            margin: 20px 0;
+            margin: 20px auto;
             display: none;
             animation: fadeIn 1s;
             position: relative;
             z-index: 5;
             backdrop-filter: blur(2px);
+            box-sizing: border-box;
         }
         
         h1 {
             color: #d32f2f;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 1.5rem;
         }
         
         p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            word-wrap: break-word;
         }
         
-        /* Imagen personalizada en lugar del corazón */
-        .imagen-personalizada {
-            width: 100px;
-            height: 100px;
-            margin: 20px auto;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #d32f2f;
-            animation: pulse 1.5s infinite;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        /* Imagen normal (sin efecto de círculo) */
+        .imagen-normal {
+            width: 100%;
+            max-width: 200px;
+            margin: 15px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .button {
             background-color: #d32f2f;
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             font-size: 16px;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: block;
+            width: 80%;
+            max-width: 200px;
         }
         
         .button:hover {
@@ -97,20 +104,14 @@
         
         .hidden-message {
             display: none;
-            margin-top: 20px;
+            margin-top: 15px;
             font-style: italic;
-            font-size: 20px;
+            font-size: 18px;
             color: #d32f2f;
             animation: fadeIn 2s;
         }
         
         /* Animaciones */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -125,8 +126,8 @@
         
         .confetti-img {
             position: fixed;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             animation: heartFall 3s linear forwards;
             z-index: 1000;
             pointer-events: none;
@@ -134,6 +135,7 @@
             background-repeat: no-repeat;
             object-fit: cover;
             border-radius: 50%;
+            max-width: 100%;
         }
         
         /* Efecto de carta abriéndose */
@@ -141,6 +143,32 @@
             0% { transform: scale(1) rotate(0deg); opacity: 1; }
             50% { transform: scale(1.1) rotate(5deg); }
             100% { transform: scale(0) rotate(10deg); opacity: 0; }
+        }
+        
+        /* Ajustes para móviles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                width: 90%;
+                margin: 10px auto;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            p {
+                font-size: 14px;
+            }
+            
+            .button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .imagen-normal {
+                max-width: 150px;
+            }
         }
     </style>
 </head>
@@ -153,8 +181,9 @@
     
     <!-- Contenido principal (oculto inicialmente) -->
     <div class="container" id="mainContainer">
-        <!-- Imagen personalizada (reemplaza el corazón) -->
-        <img src="https://i.pinimg.com/originals/3a/3c/30/3a3c307e1effc80eb185f95d6e3dd2ee.gif"  
+        <!-- Imagen normal (sin efecto de círculo) -->
+        <img src="https://i.pinimg.com/originals/3a/3c/30/3a3c307e1effc80eb185f95d6e3dd2ee.gif" 
+             class="imagen-normal" 
              alt="Nuestra foto">
         
         <h1>Para mi Bebita</h1>
@@ -166,13 +195,13 @@
         <div id="hiddenMessage" class="hidden-message">
             <p>Te amo Muchisimo Bebita, Besitoooo muaks. 💖</p>
             <img src="https://i.pinimg.com/originals/4d/67/84/4d6784bcad9589f99efd63f9474f841b.gif" 
-                 class="imagen-personalizada" 
+                 class="imagen-normal" 
                  alt="Nuestra foto">
         </div>
     </div>
 
     <script>
-        // Imágenes para el confeti (¡Cámbialas por tus fotos!)
+        // Imágenes para el confeti
         const confettiImages = [
             'https://i.pinimg.com/originals/22/d7/1a/22d71a40d79a47f9d9e1e993a2deac1b.gif',
             'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif',
@@ -180,23 +209,19 @@
             'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif'
         ];
         
-        // Imagen de fondo ROMÁNTICA (se repetirá en mosaico)
-        const fondoRomantico = 'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif'; // Ejemplo: corazones pequeños
+        // Imagen de fondo ROMÁNTICA
+        const fondoRomantico = 'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif';
         
         // Mostrar la carta principal al hacer clic en la carta cerrada
         document.getElementById('cartaCerrada').addEventListener('click', function() {
             const carta = this;
             const mainContainer = document.getElementById('mainContainer');
             
-            // Animación para que la carta desaparezca (efecto de abrirse)
             carta.style.animation = 'openLetter 0.8s forwards';
             
-            // Mostrar el contenido principal después de la animación
             setTimeout(() => {
                 carta.style.display = 'none';
                 mainContainer.style.display = 'block';
-                
-                // Pequeño confeti inicial para celebrar que abrió la carta
                 createImageConfetti(10);
             }, 800);
         });
@@ -205,20 +230,15 @@
             const hiddenMessage = document.getElementById('hiddenMessage');
             const button = document.querySelector('.button');
             
-            // Mostrar mensaje oculto
             hiddenMessage.style.display = 'block';
-            
-            // Cambiar el botón
             button.textContent = '¡Te amo!';
             button.style.backgroundColor = '#4CAF50';
             button.onclick = null;
             
-            // Cambiar el fondo del body a un MOSAICO de imágenes
             document.body.style.backgroundImage = `url('${fondoRomantico}')`;
-            document.body.style.backgroundRepeat = 'repeat'; // Repetir en mosaico
-            document.body.style.backgroundSize = 'auto'; // Tamaño original de la imagen
+            document.body.style.backgroundRepeat = 'repeat';
+            document.body.style.backgroundSize = 'auto';
             
-            // Crear confeti con imágenes
             createImageConfetti(30);
         }
         
@@ -228,21 +248,18 @@
                     const imgConfetti = document.createElement('img');
                     imgConfetti.className = 'confetti-img';
                     
-                    // Seleccionar una imagen aleatoria
                     const randomImg = confettiImages[Math.floor(Math.random() * confettiImages.length)];
                     imgConfetti.src = randomImg;
                     
-                    // Posición y animación aleatoria
                     imgConfetti.style.left = Math.random() * 100 + 'vw';
                     imgConfetti.style.top = '-50px';
-                    imgConfetti.style.width = (Math.random() * 40 + 20) + 'px';
+                    imgConfetti.style.width = (Math.random() * 30 + 20) + 'px';
                     imgConfetti.style.height = imgConfetti.style.width;
                     imgConfetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
                     imgConfetti.style.animationDelay = (Math.random() * 0.5) + 's';
                     
                     document.body.appendChild(imgConfetti);
                     
-                    // Eliminar después de la animación
                     setTimeout(() => {
                         imgConfetti.remove();
                     }, 5000);
