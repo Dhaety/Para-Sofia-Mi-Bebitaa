@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Amor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #d32f2f;
+            overflow-x: hidden;
+            transition: background 1s ease;
+            background-size: auto; /* Cambiado para mosaico */
+            background-repeat: repeat; /* Repetir la imagen */
+        }
+        
+        /* Carta cerrada (imagen) */
+        .carta-cerrada {
+            width: 250px;
+            cursor: pointer;
+            transition: all 0.5s;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        
+        .carta-cerrada:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Contenedor principal (oculto inicialmente) */
+        .container {
+            background-color: rgba(255, 255, 255, 0.85); /* Más opacidad para legibilidad */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            margin: 20px 0;
+            display: none;
+            animation: fadeIn 1s;
+            position: relative;
+            z-index: 5;
+            backdrop-filter: blur(2px);
+        }
+        
+        h1 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        /* Imagen personalizada en lugar del corazón */
+        .imagen-personalizada {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d32f2f;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .button:hover {
+            background-color: #b71c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 20px;
+            color: #d32f2f;
+            animation: fadeIn 2s;
+        }
+        
+        /* Animaciones */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes heartFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .confetti-img {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            animation: heartFall 3s linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        /* Efecto de carta abriéndose */
+        @keyframes openLetter {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(0) rotate(10deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Carta cerrada (IMAGEN) -->
+    <img src="https://img1.picmix.com/output/stamp/normal/8/2/3/2/1892328_762f7.gif" 
+         class="carta-cerrada" 
+         id="cartaCerrada"
+         alt="Carta para mi amor">
+    
+    <!-- Contenido principal (oculto inicialmente) -->
+    <div class="container" id="mainContainer">
+        <!-- Imagen personalizada (reemplaza el corazón) -->
+        <img src="https://i.pinimg.com/originals/3a/3c/30/3a3c307e1effc80eb185f95d6e3dd2ee.gif"  
+             alt="Nuestra foto">
+        
+        <h1>Para mi Bebita</h1>
+        <p>Cuando comenzó nuestra relación, todo empezó a brillar con un color diferente; los días que paso contigo se sienten más cálidos, y todo se vuelve más dulce. La seguridad y la paz que siento cuando estoy a tu lado son muy especiales. Pero a veces tengo muchas preguntas: ¿Cuál sería el sabor de tus labios? Quiero derretirlos en el intento. ¿Cuál será el olor de tu perfume? Quiero recordarlo para siempre cuando piense en abrazarte. ¿Cómo me sentiría, cuando me demostraras todo tu dulce amor? Ya lo he sentido, y es algo tan especial, que lo atesoro muchísimo.</p>
+        <p>Presiona el botón para descubrir lo que siento por ti...</p>
+        
+        <button class="button" onclick="showMessage()">Presiona aquí, mi amor</button>
+        
+        <div id="hiddenMessage" class="hidden-message">
+            <p>Te amo Muchisimo Bebita, Besitoooo muaks. 💖</p>
+            <img src="https://i.pinimg.com/originals/4d/67/84/4d6784bcad9589f99efd63f9474f841b.gif" 
+                 class="imagen-personalizada" 
+                 alt="Nuestra foto">
+        </div>
+    </div>
+
+    <script>
+        // Imágenes para el confeti (¡Cámbialas por tus fotos!)
+        const confettiImages = [
+            'https://i.pinimg.com/originals/22/d7/1a/22d71a40d79a47f9d9e1e993a2deac1b.gif',
+            'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif',
+            'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif',
+            'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif'
+        ];
+        
+        // Imagen de fondo ROMÁNTICA (se repetirá en mosaico)
+        const fondoRomantico = 'https://i.pinimg.com/originals/97/f0/a9/97f0a929bc2fe98deae27940b933df7d.gif'; // Ejemplo: corazones pequeños
+        
+        // Mostrar la carta principal al hacer clic en la carta cerrada
+        document.getElementById('cartaCerrada').addEventListener('click', function() {
+            const carta = this;
+            const mainContainer = document.getElementById('mainContainer');
+            
+            // Animación para que la carta desaparezca (efecto de abrirse)
+            carta.style.animation = 'openLetter 0.8s forwards';
+            
+            // Mostrar el contenido principal después de la animación
+            setTimeout(() => {
+                carta.style.display = 'none';
+                mainContainer.style.display = 'block';
+                
+                // Pequeño confeti inicial para celebrar que abrió la carta
+                createImageConfetti(10);
+            }, 800);
+        });
+        
+        function showMessage() {
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            const button = document.querySelector('.button');
+            
+            // Mostrar mensaje oculto
+            hiddenMessage.style.display = 'block';
+            
+            // Cambiar el botón
+            button.textContent = '¡Te amo!';
+            button.style.backgroundColor = '#4CAF50';
+            button.onclick = null;
+            
+            // Cambiar el fondo del body a un MOSAICO de imágenes
+            document.body.style.backgroundImage = `url('${fondoRomantico}')`;
+            document.body.style.backgroundRepeat = 'repeat'; // Repetir en mosaico
+            document.body.style.backgroundSize = 'auto'; // Tamaño original de la imagen
+            
+            // Crear confeti con imágenes
+            createImageConfetti(30);
+        }
+        
+        function createImageConfetti(amount) {
+            for (let i = 0; i < amount; i++) {
+                setTimeout(() => {
+                    const imgConfetti = document.createElement('img');
+                    imgConfetti.className = 'confetti-img';
+                    
+                    // Seleccionar una imagen aleatoria
+                    const randomImg = confettiImages[Math.floor(Math.random() * confettiImages.length)];
+                    imgConfetti.src = randomImg;
+                    
+                    // Posición y animación aleatoria
+                    imgConfetti.style.left = Math.random() * 100 + 'vw';
+                    imgConfetti.style.top = '-50px';
+                    imgConfetti.style.width = (Math.random() * 40 + 20) + 'px';
+                    imgConfetti.style.height = imgConfetti.style.width;
+                    imgConfetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    imgConfetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                    
+                    document.body.appendChild(imgConfetti);
+                    
+                    // Eliminar después de la animación
+                    setTimeout(() => {
+                        imgConfetti.remove();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
